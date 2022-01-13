@@ -12,7 +12,7 @@ import Teams from './views/Teams/Teams';
 import Header from './components/Header/Header';
 import ProtectedRoute from './utils/ProtectedRoute';
 
-function App({ routeProps }) {
+function App() {
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
@@ -37,7 +37,7 @@ function App({ routeProps }) {
           render={(routeProps) => <Teams {...routeProps} user={currentUser} />}
         />
         <ProtectedRoute currentUser={currentUser} exact path="/teams/new">
-          <AddTeam {...routeProps} user={currentUser} />
+          <AddTeam user={currentUser} />
         </ProtectedRoute>
         <Route
           exact
