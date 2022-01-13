@@ -10,6 +10,7 @@ import { useState, useEffect } from 'react';
 import { getUser } from './services/users';
 import Teams from './views/Teams/Teams';
 import Header from './components/Header/Header';
+import ProtectedRoute from './utils/ProtectedRoute';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -35,7 +36,7 @@ function App() {
           path="/teams"
           render={(routeProps) => <Teams {...routeProps} user={currentUser} />}
         />
-        <Route
+        <ProtectedRoute
           exact
           path="/teams/new"
           render={(routeProps) => <AddTeam {...routeProps} user={currentUser} />}
@@ -45,9 +46,9 @@ function App() {
           path="/teams/:id"
           render={(routeProps) => <Team {...routeProps} user={currentUser} />}
         />
-        <Route exact path="/teams/:id/edit">
+        <ProtectedRoute exact path="/teams/:id/edit">
           <EditTeam user={currentUser} />
-        </Route>
+        </ProtectedRoute>
         <Route>
           <NotFound />
         </Route>
